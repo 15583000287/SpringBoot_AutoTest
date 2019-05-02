@@ -5,13 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-    @GetMapping("/")
-    public String test(){
-        return "请求接口为/";
-    }
 
-    @GetMapping("/index")
-    public String index(){
-        return "Welcome To Index Page !";
+    @GetMapping("/hello")
+    public String hello(){
+        return "Hello Welcome to Jenkins!  这是我使用Jenkins + Docker自动化部署的第一个应用！";
     }
 }
