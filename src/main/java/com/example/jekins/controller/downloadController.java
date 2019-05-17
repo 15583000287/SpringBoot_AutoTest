@@ -16,10 +16,11 @@ public class downloadController {
 
     @GetMapping("/download/pattern")
     public void downloadPattern(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("下载文件.....");
         ClassPathResource resource = new ClassPathResource("\\static\\pattern\\模板.txt");
         try {
             InputStream in = resource.getInputStream();
-            downFile("模板.txt",request,response,in);
+            downFile("模板111.txt",request,response,in);
         } catch (IOException e) {
             e.printStackTrace();
         }
