@@ -17,10 +17,10 @@ public class downloadController {
     @GetMapping("/download/pattern")
     public void downloadPattern(HttpServletRequest request, HttpServletResponse response){
         System.out.println("下载文件.....");
-        ClassPathResource resource = new ClassPathResource("\\static\\pattern\\模板.txt");
+        ClassPathResource resource = new ClassPathResource("\\static\\pattern\\test.xlsx");
         try {
             InputStream in = resource.getInputStream();
-            downFile("模板111.txt",request,response,in);
+            downFile("test.xlsx",request,response,in);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -29,8 +29,6 @@ public class downloadController {
 
     /**
      * 下载文件
-     *
-     * @param filePath(带文件名) 文件绝对路径
      * @param fileName 下载文件名称
      * @param response 响应
      * @throws IOException 异常
