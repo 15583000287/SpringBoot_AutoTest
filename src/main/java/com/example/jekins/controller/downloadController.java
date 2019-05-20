@@ -45,7 +45,7 @@ public class downloadController {
             response.reset();
 //            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
 //            response.setContentType("application/octet-stream; charset=UTF-8");
-            response.setContentType("application/binary;charset=ISO8859-1");
+            response.setContentType("application/binary;charset=utf-8");
             response.setHeader("Content-disposition", "attachment; filename=" + fileName + ".xlsx");
             workbook.write(os);
             os.flush();
