@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 
@@ -18,11 +19,13 @@ public class downloadController {
     @GetMapping("/download/pattern")
     public void downloadPattern(HttpServletRequest request, HttpServletResponse response){
         System.out.println("下载文件.....");
-        ClassPathResource resource = new ClassPathResource("\\static\\pattern\\test.xlsx");
+
+//        ClassPathResource resource = new ClassPathResource("\\static\\pattern\\test.xlsx");
         try {
-            FileInputStream in = (FileInputStream) resource.getInputStream();
+//            InputStream in = resource.getInputStream();
+            InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("\\static\\pattern\\test.xlsx");
             XSSFWorkbook workbook = new XSSFWorkbook(in);
-            downFile("test.xlsx",request,response,workbook);
+            downFile("test",request,response,workbook);
         } catch (IOException e) {
             e.printStackTrace();
         }
