@@ -43,8 +43,10 @@ public class downloadController {
             fileName = URLEncoder.encode(fileName, "UTF-8");
             os = response.getOutputStream();
             response.reset();
-            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
-            response.setContentType("application/octet-stream; charset=UTF-8");
+//            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+//            response.setContentType("application/octet-stream; charset=UTF-8");
+            response.setContentType("application/binary;charset=ISO8859-1");
+            response.setHeader("Content-disposition", "attachment; filename=" + fileName + ".xlsx");
             workbook.write(os);
             os.flush();
         } catch (Exception e) {
