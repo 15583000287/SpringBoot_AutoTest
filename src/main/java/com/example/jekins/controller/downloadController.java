@@ -1,13 +1,12 @@
 package com.example.jekins.controller;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -29,6 +28,11 @@ public class downloadController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @GetMapping("/down")
+    public void down(HttpServletRequest request, HttpServletResponse response){
+        templateDownload(response);
     }
 
 
@@ -59,4 +63,30 @@ public class downloadController {
                 os.close();
         }
     }
+
+
+
+
+    public void templateDownload(HttpServletResponse response) {
+        try {
+            InputStream fis = Thread.currentThread().getContextClassLoader().getResourceAsStream("\\static\\pattern\\test.xlsx");
+            XSSFWorkbook workbook = new XSSFWorkbook(fis);
+            response.setContentType("application/binary;charset=ISO8859-1");
+            String fileName = java.net.URLEncoder.encode("template", "UTF-8");
+            response.setHeader("Content-disposition", "attachment; filename=" + fileName + ".xlsx");
+            ServletOutputStream out = null;
+            out = response.getOutputStream();
+            workbook.write(out);
+            out.flush();
+            out.close();
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            //关闭文件输出流
+
+        }
+        return;
+    }
+
 }
