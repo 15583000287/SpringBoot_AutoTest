@@ -1,10 +1,10 @@
 package com.example.jekins.controller;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -15,25 +15,34 @@ import java.net.URLEncoder;
 @RestController
 public class downloadController {
 
+
+    public static void main(String[] args){
+        InputStream in = downloadController.class.getClassLoader().getResourceAsStream("\\static\\pattern\\test.xlsx");
+        System.out.println(in);
+        ClassPathResource resource = new ClassPathResource("\\static\\pattern\\test.xlsx");
+        System.out.println(resource);
+    }
+
+
+
+
     @GetMapping("/download/pattern")
     public void downloadPattern(HttpServletRequest request, HttpServletResponse response){
         System.out.println("下载文件.....");
 
-//        ClassPathResource resource = new ClassPathResource("\\static\\pattern\\test.xlsx");
+        ClassPathResource resource = new ClassPathResource("\\static\\pattern\\test.xlsx");
+        System.out.println("获取路径："+ resource);
         try {
-//            InputStream in = resource.getInputStream();
-            InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("\\static\\pattern\\test.xlsx");
-            XSSFWorkbook workbook = new XSSFWorkbook(in);
+            InputStream in = resource.getInputStream();
+            System.out.println("获取输入流："+in);
+//            InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("\\static\\pattern\\test.xlsx");
+           XSSFWorkbook workbook = new XSSFWorkbook(in);
             downFile("test",request,response,workbook);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @GetMapping("/download/pattern2")
-    public void down(HttpServletRequest request, HttpServletResponse response){
-        templateDownload(response);
-    }
 
 
     /**
@@ -64,29 +73,5 @@ public class downloadController {
         }
     }
 
-
-
-
-    public void templateDownload(HttpServletResponse response) {
-        try {
-            InputStream fis = Thread.currentThread().getContextClassLoader().getResourceAsStream("\\static\\pattern\\test.xlsx");
-            XSSFWorkbook workbook = new XSSFWorkbook(fis);
-            response.setContentType("application/binary;charset=ISO8859-1");
-            String fileName = java.net.URLEncoder.encode("template", "UTF-8");
-            response.setHeader("Content-disposition", "attachment; filename=" + fileName + ".xlsx");
-            ServletOutputStream out = null;
-            out = response.getOutputStream();
-            workbook.write(out);
-            out.flush();
-            out.close();
-            fis.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            //关闭文件输出流
-
-        }
-        return;
-    }
 
 }
