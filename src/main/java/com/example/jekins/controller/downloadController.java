@@ -1,6 +1,5 @@
 package com.example.jekins.controller;
 
-import ch.qos.logback.core.util.FileUtil;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 
@@ -21,7 +20,7 @@ public class downloadController {
         System.out.println("下载文件.....");
         ClassPathResource resource = new ClassPathResource("\\static\\pattern\\test.xlsx");
         try {
-            InputStream in = resource.getInputStream();
+            FileInputStream in = (FileInputStream) resource.getInputStream();
             XSSFWorkbook workbook = new XSSFWorkbook(in);
             downFile("test.xlsx",request,response,workbook);
         } catch (IOException e) {
