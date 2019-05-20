@@ -9,9 +9,11 @@ import java.util.List;
 
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        super.configureMessageConverters(converters);
-        converters.add(new ByteArrayHttpMessageConverter());
-    }
+
+    /*解决打包后通过流下载Excel文件打开乱码问题   暂时无效*/
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        super.configureMessageConverters(converters);
+//        converters.add(new ByteArrayHttpMessageConverter());
+//    }
 }

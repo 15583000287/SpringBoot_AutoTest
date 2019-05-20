@@ -1,5 +1,7 @@
 package com.example.jekins.controller;
 
+import ch.qos.logback.core.util.FileUtil;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +22,8 @@ public class downloadController {
         ClassPathResource resource = new ClassPathResource("\\static\\pattern\\test.xlsx");
         try {
             InputStream in = resource.getInputStream();
-            downFile("test.xlsx",request,response,in);
+            XSSFWorkbook workbook = new XSSFWorkbook(in);
+            downFile("test.xlsx",request,response,workbook);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,7 +37,7 @@ public class downloadController {
      * @throws IOException 异常
      */
     public static void downFile(String fileName,HttpServletRequest request,
-                                HttpServletResponse response,InputStream in) throws IOException {
+                                HttpServletResponse response,XSSFWorkbook workbook) throws IOException {
         OutputStream os = null;
         try {
             fileName = URLEncoder.encode(fileName, "UTF-8");
@@ -42,9 +45,7 @@ public class downloadController {
             response.reset();
             response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
             response.setContentType("application/octet-stream; charset=UTF-8");
-            byte[] b = new byte[in.available()];
-            in.read(b);
-            os.write(b);
+            workbook.write(os);
             os.flush();
         } catch (Exception e) {
             System.out.println("fileName=" + fileName);
@@ -52,8 +53,6 @@ public class downloadController {
         } finally {
             if (os != null)
                 os.close();
-            if (in != null)
-                in.close();
         }
     }
 }
