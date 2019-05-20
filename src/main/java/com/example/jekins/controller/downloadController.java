@@ -30,7 +30,7 @@ public class downloadController {
         }
     }
 
-    @GetMapping("/down")
+    @GetMapping("/download/pattern2")
     public void down(HttpServletRequest request, HttpServletResponse response){
         templateDownload(response);
     }
