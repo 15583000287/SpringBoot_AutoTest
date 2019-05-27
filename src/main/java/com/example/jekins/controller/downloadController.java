@@ -12,6 +12,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 
+/**
+ * 下载测试 控制器
+ */
 @RestController
 public class downloadController {
 
