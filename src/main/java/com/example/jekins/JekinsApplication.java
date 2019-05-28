@@ -14,7 +14,7 @@ public class JekinsApplication {
     }
 
     @GetMapping("/")
-    public String index(){
+    public String index() {
         return "index";
     }
 }

@@ -49,7 +49,7 @@ public class ExportController {
             User user = new User();
             user.setName("张三"+i);
             user.setAge("16");
-            user.setRemark("备注"+i);
+//            user.setRemark("备注"+i);
             list.add(user);
         }
         fillData(sheet,list,sdf);
@@ -92,7 +92,7 @@ public class ExportController {
             row.createCell(0).setCellValue(i + 1);
             row.createCell(1).setCellValue(list.get(i).getName()!=null ? list.get(i).getName() : "");
             row.createCell(2).setCellValue(list.get(i).getAge() != null ? list.get(i).getAge() : "");
-            row.createCell(3).setCellValue(list.get(i).getRemark() != null ? list.get(i).getRemark() : "");
+//            row.createCell(3).setCellValue(list.get(i).getRemark() != null ? list.get(i).getRemark() : "");
         }
     }
 
