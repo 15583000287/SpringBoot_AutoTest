@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class EasyList {
+public class ListTest {
     public static void main(String[] args) {
 //        String[] arry = {"1","2"};
 //        String[] newArray = Arrays.copyOf(arry,4);
