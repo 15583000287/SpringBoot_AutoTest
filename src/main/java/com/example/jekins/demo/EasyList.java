@@ -16,10 +16,15 @@ public class EasyList {
         ArrayList list = new ArrayList();
         System.out.println("capacity: " + getCapacity(list) + " size: " + list.size());
         for (int i = 0; i < 11; i++) {
-            list.add("1");
+            list.add(i);
             System.out.println("capacity: " + getCapacity(list) + " size: " + list.size());
         }
-
+        System.out.println("list size: "+list.size());
+        list.remove(1);
+        list.remove(1);
+        list.remove(1);
+        System.out.println("remove after size: "+list.size() );
+        System.out.println(list);
     }
 
     public static int getCapacity(ArrayList arrayList) {

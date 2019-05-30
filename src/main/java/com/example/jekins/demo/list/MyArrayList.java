@@ -54,8 +54,18 @@ public class MyArrayList<E> implements MyList<E> {
     }
 
     @Override
-    public boolean remove(int index) {
-        return false;
+    public E remove(int index) {
+        //检查是否越界
+        rangeCheck(index);
+        E oldValue = (E)elementData[index];
+        //删除元素
+        if((size-1) > index){
+            System.arraycopy(elementData,index+1,elementData,index,size-1-index);
+            //将最后一个元素置为null
+            elementData[size-1] = null;
+            size --;
+        }
+        return oldValue;
     }
 
     @Override
@@ -128,5 +138,19 @@ public class MyArrayList<E> implements MyList<E> {
     @Override
     public void forEachRemaining(Consumer<? super E> action) {
 
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer("[ ");
+        if(elementData.length >  0){
+            for(int i = 0 ;i<elementData.length;i++){
+               if(elementData[i]!=null){
+                   sb.append(elementData[i]+",");
+               }
+            }
+            sb.replace(sb.length()-1,sb.length()," ]");
+        }
+        return sb.toString();
     }
 }

@@ -10,7 +10,7 @@ public interface MyList<E> extends Iterator<E> {
 
     boolean remove(E object);
 
-    boolean remove(int index);
+    E remove(int index);
 
     int size();
 
