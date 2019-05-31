@@ -1,4 +1,7 @@
-package com.example.jekins.demo.list;
+package com.example.jekins.demo.test;
+
+import com.example.jekins.demo.list.MyArrayList;
+import com.example.jekins.demo.list.MyList;
 
 public class MyArrayListTest {
     public static void main(String[] args){
@@ -24,8 +27,9 @@ public class MyArrayListTest {
 
         System.out.println("------------------------ 测试add(int index, E e)方法 ---------------------");
 
-        myList.add(1,"王旭");
+        myList.add(1,"小白");
         System.out.println(myList +" size: "+myList.size());
+
 
     }
 

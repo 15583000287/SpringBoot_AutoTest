@@ -1,10 +1,13 @@
-package com.example.jekins.demo;
+package com.example.jekins.demo.test;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ListTest {
+/**
+ * ArrayList测试
+ */
+public class ArrayListTest {
     public static void main(String[] args) {
 //        String[] arry = {"1","2"};
 //        String[] newArray = Arrays.copyOf(arry,4);
@@ -17,9 +20,9 @@ public class ListTest {
         System.out.println("capacity: " + getCapacity(list) + " size: " + list.size());
         for (int i = 0; i < 11; i++) {
             list.add(i);
-            System.out.println("capacity: " + getCapacity(list) + " size: " + list.size());
+            System.out.println(list+ " capacity: " + getCapacity(list) + " size: " + list.size());
         }
-        System.out.println("list size: "+list.size());
+        System.out.println(list + " list size: "+list.size());
         list.remove(1);
         list.remove(1);
         list.remove(1);

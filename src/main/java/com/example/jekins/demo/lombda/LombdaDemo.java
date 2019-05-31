@@ -1,4 +1,4 @@
-package com.example.jekins.demo;
+package com.example.jekins.demo.lombda;
 
 import java.util.Arrays;
 import java.util.List;
