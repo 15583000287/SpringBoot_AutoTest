@@ -15,7 +15,7 @@ public class MyLinkedList<E> implements MyList<E> {
     }
 
     /**
-     * 静态内部类,每个元素为item，包含两个指针域分别指向上一个node和下一个node
+     * 节点内部类（元素值为item，包含两个指针域分别指向上一个node和下一个node）
      *
      * @param <E>
      */
