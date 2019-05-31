@@ -1,6 +1,5 @@
 package com.example.jekins.demo.list;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
@@ -41,9 +40,9 @@ public class MyArrayList<E> implements MyList<E> {
         Object[] elementData;
         if ((s = this.size) == (elementData = this.elementData).length) {
             //如果size == 数组长度，扩容
-            elementData = grow(size+1);
+            elementData = grow(size + 1);
         }
-        System.arraycopy(elementData,index,elementData,index+1,s-index);
+        System.arraycopy(elementData, index, elementData, index + 1, s - index);
         elementData[index] = e;
         size += 1;
     }
@@ -57,13 +56,13 @@ public class MyArrayList<E> implements MyList<E> {
     public E remove(int index) {
         //检查是否越界
         rangeCheck(index);
-        E oldValue = (E)elementData[index];
+        E oldValue = (E) elementData[index];
         //删除元素
-        if((size-1) > index){
-            System.arraycopy(elementData,index+1,elementData,index,size-1-index);
+        if ((size - 1) > index) {
+            System.arraycopy(elementData, index + 1, elementData, index, size - 1 - index);
             //将最后一个元素置为null
-            elementData[size-1] = null;
-            size --;
+            elementData[size - 1] = null;
+            size--;
         }
         return oldValue;
     }
@@ -114,7 +113,7 @@ public class MyArrayList<E> implements MyList<E> {
      * 检查数组下标是否越界
      */
     public void rangeCheck(int index) {
-        if (index >= size) {
+        if (!(index >= 0 && index < size)) {
             throw new IndexOutOfBoundsException("越界，length--->" + index);
         }
     }
@@ -143,13 +142,13 @@ public class MyArrayList<E> implements MyList<E> {
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer("[ ");
-        if(elementData.length >  0){
-            for(int i = 0 ;i<elementData.length;i++){
-               if(elementData[i]!=null){
-                   sb.append(elementData[i]+",");
-               }
+        if (elementData.length > 0) {
+            for (int i = 0; i < elementData.length; i++) {
+                if (elementData[i] != null) {
+                    sb.append(elementData[i] + ",");
+                }
             }
-            sb.replace(sb.length()-1,sb.length()," ]");
+            sb.replace(sb.length() - 1, sb.length(), " ]");
         }
         return sb.toString();
     }

@@ -156,7 +156,7 @@ public class MyLinkedList<E> implements MyList<E> {
 
     /** 判断元素index是否越界*/
     void checkElementIndex(int index) {
-        if (index >= size) {
+        if (!(index >=0 && index < size)) {
             throw new IndexOutOfBoundsException("越界 index ---> " + index);
         }
     }
