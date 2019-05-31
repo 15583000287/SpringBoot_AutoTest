@@ -1,5 +1,8 @@
 package com.example.jekins.demo.list;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MyLinkedList<E> implements MyList<E> {
     transient int size;
     /**
