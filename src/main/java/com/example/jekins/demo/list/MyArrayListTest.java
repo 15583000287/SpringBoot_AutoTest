@@ -1,7 +1,5 @@
 package com.example.jekins.demo.list;
 
-import java.lang.reflect.Array;
-
 public class MyArrayListTest {
     public static void main(String[] args){
 //        String[] srcArr = {"1","2","3","4"};
@@ -23,6 +21,12 @@ public class MyArrayListTest {
         System.out.println("------------------------ 测试remove(int index)方法 ---------------------");
         myList.remove(1);
         System.out.println(myList +" size: "+myList.size());
+
+        System.out.println("------------------------ 测试add(int index, E e)方法 ---------------------");
+
+        myList.add(1,"王旭");
+        System.out.println(myList +" size: "+myList.size());
+
     }
 
 }
