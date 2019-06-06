@@ -30,7 +30,6 @@ public class RedisController {
     }
 
     @GetMapping("/findAllUser")
-//    @Cacheable
     public List<User> findAllUser(){
 //        Object obj = redisTemplate.opsForValue().get("user:list");
 //        if(obj !=null){
@@ -38,6 +37,7 @@ public class RedisController {
 //            return users;
 //        }
         List<User> users = userRepository.findAll();
+        System.out.println(users);
         // 具体使用
         redisTemplate.opsForList().leftPush("user:list", JSON.toJSONString(users));
         stringRedisTemplate.opsForValue().set("user:name", "张三");

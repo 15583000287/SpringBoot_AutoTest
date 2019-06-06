@@ -24,6 +24,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Redis 配置类
@@ -32,7 +35,7 @@ import redis.clients.jedis.JedisPoolConfig;
 @Log4j2
 //必须加，使配置生效
 @EnableCaching
-public class RedisConfiguration extends CachingConfigurerSupport {
+public class RedisConfig extends CachingConfigurerSupport {
     @Autowired
     private JedisConnectionFactory jedisConnectionFactory;
 

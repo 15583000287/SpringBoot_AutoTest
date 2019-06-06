@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @SpringBootApplication
 @Controller
-public class JekinsApplication {
+public class JenkinsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JekinsApplication.class, args);
+        SpringApplication.run(JenkinsApplication.class, args);
     }
 
     @GetMapping("/")
